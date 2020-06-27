@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>	
+<head>		
+<title>根据数据记录的主键值检索数据</title>
+<script>	
+window.indexedDB = window.indexedDB || window.webkitIndexedDB ||
+window.mozIndexedDB || window.msIndexedDB;
+window.IDBTransaction = window.IDBTransaction || 
+window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange|| window.webkitIDBKeyRange || 
+window.msIDBKeyRange;
+window.IDBCursor = window.IDBCursor || window.webkitIDBCursor || 
+window.msIDBCursor;
+const dbName = 'indexedDBTest'; //数据库名
+const dbVersion = 20180409; //版本号
+let idb; 
+function ConnectDataBase(){
+    /*连接数据库，dbConnect对象为一个IDBOpenDBRequest对象，代表数据库连接
+    的请求对象*/
+    let dbConnect = indexedDB.open(dbName, dbVersion);
+    dbConnect.onsuccess = function(e){//连接成功   
+        idb = e.target.result; //引用IDBDatabase对象 
+        alert('数据库连接成功');
+        document.getElementById("btnSaveData").disabled=false;
+    };
+    dbConnect.onerror = function(){
+        alert('数据库连接失败');
+    };
+}
+function openDataBase(){
+    //开启事务
+    let tx = idb.transaction(['Users','Users2'],'readonly'); 
+    tx.oncomplete = function(){alert('打开数据库成功');}
+    tx.onabort = function(){alert('打开数据库失败'); }
+    for(let objectStoreName of tx.objectStoreNames){
+        document.getElementById('objectStoreNames').innerHTML+='<li>'+objectStoreName+'</li>';
+    }     
+}		
+</script>		
+</head>	
+<body>
+<input id="btnConnectDataBase" type="button" value="连接数据库" onclick="ConnectDataBase();"/>
+<input id="btnSaveData"  type="button" value="打开数据库" onclick="openDataBase();"/><br/>
+事务中的对象仓库:
+<ul id="objectStoreNames">
+</ul>
+</body>
+</html>
+
+
+

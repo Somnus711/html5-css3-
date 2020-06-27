@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>使用Symbol.iterator属性实现字符串翻转</title>
+</head>
+<body>
+</body>
+<script>
+//翻转字符串
+var str = new String("这是一个测试字符串");
+str[Symbol.iterator] = function() {
+  var s = this;
+  var l = s.length;
+  return {
+    next: function() {
+      if (l > 0) {
+        l--
+        return { value: s[l], done: false }
+      } else {
+        return { done: true }
+      }
+    }
+  }
+}
+
+var s = "";
+for (var item of str) {
+  s += item;
+}
+console.log(s);
+</script>
+</html>

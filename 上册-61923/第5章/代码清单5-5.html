@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>定义类的静态方法</title>
+</head>
+<body>
+</body>
+<script>
+var catCount = 0;//已创建的猫的数量
+/*创建Cat类*/
+class Cat {
+  constructor(name) {
+    this.name = name;
+    catCount+=1;//将已创建的猫的数量+1
+  }
+  set name(name) {
+    this._name = name;
+  }
+  get name() {
+    return this._name;
+  }
+  walk() {
+    console.log(this._name + '正在走路');
+  }
+  /*静态方法 */
+  static count() {
+    return catCount;
+  }
+}
+ 
+console.log(Cat.count()); //浏览器控制台中输出0
+var cat1 = new Cat('小猫');
+console.log(Cat.count()); // 浏览器控制台中输出1
+var cat2 = new Cat('大猫');
+console.log(Cat.count()); //浏览器控制台中输出2
+</script>
+</html>

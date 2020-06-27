@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>	
+<head>		
+<title>向indexedDB数据库的对象仓库中保存数据</title>
+<script>	
+window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange|| window.webkitIDBKeyRange || window.msIDBKeyRange;
+window.IDBCursor = window.IDBCursor || window.webkitIDBCursor || window.msIDBCursor;	
+const dbName = 'blobTest1'; //数据库名
+const dbVersion = 20180408; //版本号
+/*连接数据库，dbConnect对象为一个IDBOpenDBRequest对象，代表数据库连接
+的请求对象*/
+let dbConnect = indexedDB.open(dbName, dbVersion);
+let idb;
+dbConnect.onsuccess = function(e){//连接成功   
+    idb = e.target.result; //引用IDBDatabase对象 
+};
+dbConnect.onerror = function(){
+     alert('数据库连接失败');
+};
+dbConnect.onupgradeneeded = function(e){
+    idb = e.target.result; 
+    let store = idb.createObjectStore('files');
+    let name =  'fileIndex';
+    let keyPath = 'file';
+    let optionalParameters = {
+        unique: false,
+        multiEntry: false 
+    };
+ 
+    let idx = store.createIndex(name, keyPath, optionalParameters);
+    alert('索引创建成功');
+
+};
+function saveFile()
+{
+    //得到用户选择的第一个文件 
+    let file = document.getElementById("file").files[0];
+    let tx = idb.transaction(['files'],"readwrite"); //开启事务
+    let store = tx.objectStore('files');
+    let req = store.put(file,'blob');
+    req.onsuccess = function(e){
+        alert("文件保存成功");
+    };
+    req.onerror = function(e){
+        alert("文件保存失败");
+    };
+}
+
+</script>		
+</head>	
+<body>
+选择文件：
+<input type="file" id="file" />
+<input type="button" value="在IndexedDB数据库中保存文件" onclick="saveFile();"/>
+</body>
+</html>

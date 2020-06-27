@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>使用代理创建一个只读对象</title>
+</head>
+<body>
+</body>
+<script>
+function NOPE() {
+  throw new Error("不能修改只读对象");
+}
+
+var handler = {
+  //重载所有用于修改对象的方法
+  set: NOPE,
+  defineProperty: NOPE,
+  deleteProperty: NOPE,
+  preventExtensions: NOPE,
+  setPrototypeOf: NOPE
+};
+
+function readOnlyObj(target) {
+  return new Proxy(target, handler);
+}
+var newMath = readOnlyObj(Math);
+console.log(newMath.min(54, 40));//40
+newMath.max = Math.min;//引发"不能修改只读对象"错误
+delete newMath.sin;//引发"不能修改只读对象"错误
+</script>
+</html>

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>当多维数组中保存对象时使用解构赋值</title>
+</head>
+<body>
+</body>
+<script>
+let user = [
+    {firstName:'张',lastName:'三'},
+    {firstName:'李',lastName:'四'},
+    {firstName:'王',lastName:'五'}
+];
+//获取数组中第三个对象的值
+let [, , {firstName,lastName}] =user;
+
+console.log(firstName);      //浏览器控制台中输出"王"
+console.log(lastName);      //浏览器控制台中输出"五"
+
+//获取数组中第一个对象的值
+let [{firstName: newFirstName,lastName:newLastName}] =user;
+console.log(newFirstName);      //浏览器控制台中输出"张"
+console.log(newLastName);      //浏览器控制台中输出"三"
+</script>
+</html>

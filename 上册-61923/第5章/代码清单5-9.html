@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>为函数指定默认参数值</title>
+</head>
+<body>
+</body>
+<script>
+function animalSentence(animals2="老虎", animals3="熊") {
+    return `森林中的动物包括：狮子与${animals2}与${animals3}!`;
+}
+console.log(animalSentence());//浏览器控制台中输出“森林中的动物包括：狮子与老虎与熊!”
+console.log(animalSentence("大象"));//浏览器控制台中输出“森林中的动物包括：狮子与大象与熊!”
+console.log(animalSentence("大象","狐狸"));//浏览器控制台中输出“森林中的动物包括：狮子与大象与狐狸!”
+</script>
+</html>

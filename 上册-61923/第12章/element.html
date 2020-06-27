@@ -1,0 +1,11 @@
+﻿<script>
+window.customElements.define('x-foo-shadowdom', class extends HTMLElement
+ {
+    constructor() {
+        super(); //在构造函数中总是先调用super()
+         //为元素附加一个影子根
+        let shadowRoot = this.attachShadow({mode: 'open'});
+        shadowRoot.innerHTML ='<b>我来自于组件内部!</b><br/><slot></slot>';
+    }
+});
+</script>

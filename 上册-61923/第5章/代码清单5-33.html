@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>依序读取三个文件</title>
+</head>
+<script language=javascript>
+function getData(fileName){   
+    return new Promise((resolve, reject)=>{ 
+        let objXmlHttp=new XMLHttpRequest();           
+        objXmlHttp.open("GET",fileName, true); 
+        objXmlHttp.onreadystatechange = ()=>{ 
+            if (objXmlHttp.readyState == 4) { 
+                if (objXmlHttp.status == 200){ 
+                    resolve(objXmlHttp.responseText+"<br/>");
+                }
+                else{
+                    alert("读取文件失败");
+                }
+            }
+        }
+        objXmlHttp.send();
+    });
+}
+async function get(){
+    return await getData("1.txt")+await getData("2.txt")+await getData("3.txt")
+}
+/*function get() {
+    let msg = "";
+    return getData("1.txt")
+        .then(val => {
+            msg += val;
+            return getData("2.txt");
+        })
+        .then(val => {
+            msg+= val;
+            return getData("3.txt");
+        })
+       .then(val => {
+            msg += val;
+            return msg;
+        });
+}*/
+/*
+async function get(){
+    const array=["1.txt","2.txt","3.txt"];
+    let msg="";
+    for(let i=0;i<array.length;i++)
+        msg=msg+await getData(array[i]);
+    return msg;
+}*/
+function read()
+{
+    get().then((msg)=>{
+        let result=document.getElementById("result");
+        result.innerHTML=msg;
+    });
+}
+</script>
+<input type="button" value="读取文件" onclick="read()"/>
+<div name="result" id="result" style="white-space:pre">
+      <!-- 这里用来显示读取结果 -->
+</div>  
+</body> 
+</html>

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>读取三个文件</title>
+</head>
+<script language=javascript> 
+function read()
+{
+    const fileName="4.txt";
+    var promise=new Promise((resolve, reject)=>{ 
+        let objXmlHttp=new XMLHttpRequest();           
+        objXmlHttp.open("GET",fileName, true); 
+        objXmlHttp.onreadystatechange = ()=>{ 
+            if (objXmlHttp.readyState == 4) { 
+                if (objXmlHttp.status == 200) 
+                    resolve(objXmlHttp.responseText);
+                else
+                    reject();
+            }
+        }
+        objXmlHttp.send();
+    });
+    promise.then((response)=>{
+        let result=document.getElementById("result");
+        result.innerHTML=response;
+    },
+    ()=>alert("读取文件失败")
+    );
+}
+
+</script>
+<input type="button" value="读取文件" onclick="read()"/>
+<div name="result" id="result" style="white-space:pre">
+      <!-- 这里用来显示读取结果 -->
+</div>  
+</body> 
+</html>
+
+

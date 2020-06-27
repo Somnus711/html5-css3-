@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>	
+<head>		
+<title>统计数据条数</title>
+<script>	
+window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange|| window.webkitIDBKeyRange || window.msIDBKeyRange;
+window.IDBCursor = window.IDBCursor || window.webkitIDBCursor || window.msIDBCursor;
+const dbName = 'indexedDBTest'; //数据库名
+const dbVersion = 20180409; //版本号
+function CountData(){
+    /*连接数据库，dbConnect对象为一个IDBOpenDBRequest对象，代表数据库连接
+    的请求对象*/
+    let dbConnect = indexedDB.open(dbName, dbVersion);
+    dbConnect.onsuccess = function(e){//连接成功   
+        let idb = e.target.result; //引用IDBDatabase对象 
+        alert('数据库连接成功');
+        //开启事务
+        let tx = idb.transaction(['Users'],"readonly");
+        let store = tx.objectStore('Users'); 
+        let req = store.count();
+        req.onsuccess = function(){
+            alert('对象仓库中共有'+this.result+'条记录');
+        }
+    };
+    dbConnect.onerror = function(){
+        alert('数据库连接失败');
+    };    
+}
+</script>		
+</head>	
+<body>
+<input id="btnConnectDataBase" type="button" value="统计数据条数" onclick="CountData();"/>
+</body>
+</html>

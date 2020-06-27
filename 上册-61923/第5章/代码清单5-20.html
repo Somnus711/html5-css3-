@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>当对象具有深层次结构时也可以使用解构赋值</title>
+</head>
+<body>
+</body>
+<script>
+let user = {
+  user1: {firstName: '张',lastName: '三',pinyin: 'zhangsan'},
+  user2: {firstName: '李',lastName: '四',pinyin: 'lisi'},
+  user3: {firstName: '王',lastName: '五',pinyin: 'wangwu'}
+};
+//只抽取一部分
+let {user1: {firstName,lastName,pinyin}} =user;
+
+console.log(firstName);     //浏览器控制台中输出"张"
+console.log(lastName);     //浏览器控制台中输出"三"
+console.log(pinyin);      //浏览器控制台中输出"zhangsan"
+
+// 只抽取一部分
+let {
+  user3: {
+    firstName: F,
+    lastName: L,
+    pinyin: P
+  },
+} = user;
+
+console.log(F);      //浏览器控制台中输出"王"
+console.log(L);     //浏览器控制台中输出"五"
+console.log(P);    //浏览器控制台中输出"wangwu"
+</script>
+</html>

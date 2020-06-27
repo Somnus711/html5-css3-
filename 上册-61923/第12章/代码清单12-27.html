@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>在导入文档中使用模板</title>
+<link rel="import" href="import1.html">
+</head>
+<body>
+<div id="container"></div>
+</body>
+<script>
+    let link = document.querySelector('link[rel="import"]');
+    // 从导入中复制模板元素
+    let template = link.import.querySelector('template');
+    let content = template.content.cloneNode(true);
+    document.querySelector('#container').appendChild(content);
+</script>
+</html>

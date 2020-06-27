@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>实现类的继承</title>
+</head>
+<body>
+</body>
+<script>
+/*创建Animal类*/
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  set name(name) {
+    this._name = name;
+  }
+  get name() {
+    return this._name;
+  }
+  walk() {
+    console.log(this.name + '正在走路');
+  }
+}
+/*创建继承Animal类的Cat类*/
+class Cat extends Animal {
+  mew() {
+    console.log(this.name + '正在叫');
+  }
+}
+ 
+var cat1 = new Cat('小猫');
+console.log(cat1.name); //浏览器控制台中输出“小猫”
+cat1.walk();//浏览器控制台中输出“小猫正在走路”
+cat1.mew();//浏览器控制台中输出“小猫正在叫”
+var cat2 = new Cat('大猫');
+console.log(cat2.name); //浏览器控制台中输出“大猫”
+cat2.walk();//浏览器控制台中输出“大猫正在走路”
+cat2.mew();//浏览器控制台中输出“大猫正在叫”
+</script>
+</html>

@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ECMAScript 2015之前“类”的定义及使用示例</title>
+</head>
+<body>
+</body>
+<script>
+/*创建Cat“类”*/
+function Cat(name) {
+  this.setName(name);
+};
+Cat.prototype = {
+  setName: function(name) {
+    this._name = name;
+  },
+  getName: function() {
+    return this._name;
+  },
+  walk: function() {
+    console.log(this._name + '正在走路');
+  }
+};
+ 
+/*创建Cat对象*/ 
+var cat1 = new Cat('小猫');
+var cat2 = new Cat('大猫');
+cat1.walk(); // 小猫正在走路
+cat2.walk(); //大猫正在走路
+</script>
+</html>

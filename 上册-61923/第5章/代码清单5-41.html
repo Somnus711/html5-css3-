@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WeakSet集合使用示例</title>  
+<style>
+div{
+    width:200px;
+    height:200px;
+    float:left;
+}
+div#divA{
+    background-color:red;
+}
+div#divB{
+    background-color:pink;
+}
+div#divC{
+    background-color:yellow;
+}
+</style>
+</head>
+<body>
+<div id="divA">第一个元素</div>
+<div id="divB">第二个元素</div>
+<div id="divC">第三个元素</div>
+<input type="button" value="移除元素" onclick="removeElem()" />
+</body>
+<script>
+var map=new WeakMap();
+var index=0;
+var words=["第一个元素","第二个元素","第三个元素"];
+document.querySelectorAll("div").forEach(function(div){
+    i=new String(index);
+    map.set(div,words[index]);
+    index+=1;
+});
+function removeElem(){
+     console.log(map);
+     console.log(map.get(document.getElementById("divA")));//浏览器控制台中输出“第一个元素“
+     var div=document.getElementById("divA");
+     document.body.removeChild(div);
+     setTimeout(function(){
+         console.log(map);
+         console.log(map.get(document.getElementById("divA")));//浏览器控制台中输出undefined
+     },10*1000);
+}
+</script>
+</html>

@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>使用标签化的模版字符串</title>
+</head>
+<body>
+</body>
+<script>
+function format(str,...indexes){
+    var result="";
+    for(var i=0;i<indexes.length;i++){
+        if(result!="") result+=",";
+        result+=`第${indexes[i]}个字符为${str[i]}`;
+    }
+    return result;
+}
+var s=format `h${1}e${2}l${3}`;
+console.log(s);//浏览器控制台中输出“输出结果为：第1个字符为h,第2个字符为e,第3个字符为l”
+</script>
+</html>

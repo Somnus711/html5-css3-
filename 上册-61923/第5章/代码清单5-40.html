@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WeakSet集合使用示例</title>  
+<style>
+div{
+    width:200px;
+    height:200px;
+    float:left;
+}
+div#divA{
+    background-color:red;
+}
+div#divB{
+    background-color:pink;
+}
+div#divC{
+    background-color:yellow;
+}
+</style>
+</head>
+<body>
+<div id="divA">第一个元素</div>
+<div id="divB">第二个元素</div>
+<div id="divC">第三个元素</div>
+<input type="button" value="移除元素" onclick="removeElem()" />
+</body>
+<script>
+var set=new WeakSet();
+document.querySelectorAll("div").forEach(function(div){
+   set.add(div);
+});
+function removeElem(){
+    console.log(set);
+    console.log(set.has(document.getElementById("divA")));//浏览器控制台中输出true
+    document.body.removeChild(document.getElementById("divA"));
+    setTimeout(function(){
+        console.log(set);
+        console.log(set.has(document.getElementById("divA")));//浏览器控制台中输出false
+    },10*1000);
+}
+</script>
+</html>

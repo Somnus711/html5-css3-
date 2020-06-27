@@ -1,0 +1,18 @@
+<link rel="import" href="jquery.html">
+<link rel="import" href="import3.html">
+<script>
+window.customElements.define('ajax-element', class extends HTMLElement
+{
+    constructor() {
+        super(); //在构造函数中总是先调用super()
+         //为元素附加一个影子根
+        let shadowRoot = this.attachShadow({mode: 'open'});
+        shadowRoot.innerHTML ='<b>我来自于组件内部!</b><slot></slot>';
+    }
+    makeRequest(url, done) { 
+         return $.ajax(url).done(function(msg) {
+            done(msg);
+        });
+    }
+});
+</script>

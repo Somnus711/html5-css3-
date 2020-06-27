@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>指定link元素的load事件回调函数与error事件回调函数</title>
+<script async>
+function handleLoad(e){
+    console.log("导入"+e.target.href+"成功");
+}
+function handleError(e){
+    console.log("导入"+e.target.href+"失败");
+}
+</script>
+<link rel="import" href="file.html" onload="handleLoad(event)" onerror="handleError(event)">
+</head>
+<body>
+</body>
+</html>

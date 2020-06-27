@@ -1,0 +1,13 @@
+﻿<link rel="stylesheet" href="import.css">
+<script>
+  // importDoc是对导入文档的引用
+  let importDoc = document.currentScript.ownerDocument;
+
+  // mainDoc 是对主文档(导入本文档的页面)的引用
+  let mainDoc = document;
+
+  // 获取导入中的第一个样式表，复制，
+  // 将它附加到主文档中。
+  let styles = importDoc.querySelector('link[rel="stylesheet"]');
+  mainDoc.head.appendChild(styles.cloneNode(true));
+</script>

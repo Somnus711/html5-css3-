@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>symbol使用示例</title>
+</head>
+<body>
+</body>
+<script>
+let person={firstName:'陆',lastName:'凌牛'};
+var age = Symbol("年龄");
+person[age]=35;
+var area = Symbol("地区");
+person[area]="江苏省";
+console.log(person);
+console.log("年龄为"+person[age]);
+console.log("地区为"+person[area]);
+</script>
+</html>

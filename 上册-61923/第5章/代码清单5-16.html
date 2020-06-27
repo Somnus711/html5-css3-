@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>生成器函数使用示例</title>
+</head>
+<body>
+</body>
+<script>
+function* sample(name) {
+  yield "你好： " + name + "!";
+  yield "欢迎阅读我的文章";
+  if (name.startsWith("张")) {
+    yield "你姓张,那太好了";
+  }
+  yield "再见!";
+}
+var iter = sample("张学友");//调用生成器函数
+console.log(iter.next());//控制台中输出“{value:"你好：张学友!",done:false}”
+console.log(iter.next());//控制台中输出“{value:"欢迎阅读我的文章",done:false}”
+console.log(iter.next());//控制台中输出“{value:"你姓张,那太好了",done:false}”
+console.log(iter.next());//控制台中输出“{{value:"再见!",done:false}”
+console.log(iter.next());//控制台中输出“{value:undefined,done:true}”
+</script>
+</html>

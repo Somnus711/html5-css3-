@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>箭头函数内的this对象总是继承于外部</title>
+</head>
+<body>
+<input type="button" value="显示年龄" onclick="getAge();" />
+</body>
+<script>
+class Person{
+    constructor() {
+       this.age=0;
+       setInterval(() => {
+           console.log(this);
+           this.age++; //this即为person 对象
+       }, 1000);
+    }
+    get age() {
+        return this._age;
+    }
+    set age(value) {
+    this._age = value;
+  }
+}
+var p = new Person();
+function getAge(){
+     console.log(p.age);
+}
+</script>
+</html>

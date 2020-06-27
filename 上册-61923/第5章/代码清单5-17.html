@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>定义迭代器</title>
+</head>
+<body>
+</body>
+<script>
+function* range(start, stop) {
+  for (var i = start; i <=stop; i++)
+    yield i;
+}
+
+for (var value of range(1,4)) {
+  console.log("您已到达了" +value+"楼！");
+}
+</script>
+</html>

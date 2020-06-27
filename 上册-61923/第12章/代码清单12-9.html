@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>在Shadow DOM中定义CSS样式</title>
+</head>
+<body>
+<div id="div1"><h3>实际运行示例:</h3></div>
+<div id="div2"><h3>Host标题</h3></div>
+<script>
+let root = document.getElementById('div2').attachShadow({mode: 'open'});
+root.innerHTML = '<style>h3{ color: red; }</style><h3>Shadow DOM标题</h3>';
+//root.innerHTML = '<link rel="stylesheet" href="代码清单12-9.css"><h3>Shadow DOM标题</h3>';
+//root.innerHTML = '<style>:host{background-color:pink;} h3{ color: red; }</style><h3>Shadow DOM标题</h3>';
+//root.innerHTML = '<style>:host{background-color:pink;} :host(:hover){background-color:yellow;} h3{ color: red; }</style><h3>Shadow DOM标题</h3>';
+</script>
+</body>
+</html>

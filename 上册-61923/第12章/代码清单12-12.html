@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>使用元素名称为组件设定样式</title>
+<style>
+div {
+    background-color: blue;
+    color:red;
+}
+</style>
+</head>
+<body>
+<div id="host"></div>
+<script>
+let root= document.getElementById('host').attachShadow({mode:'open'});
+root.innerHTML = '<div>示例文字</div>';
+//root.innerHTML = '<style>div{color:white;}</style><div>示例文字</div>';
+//root.innerHTML = '<style>:host{color:white;}</style><div>示例文字</div>';
+</script>
+</body>
+</html>

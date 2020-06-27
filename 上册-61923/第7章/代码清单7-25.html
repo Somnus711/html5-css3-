@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>   
+<head>   
+<meta charset="UTF-8">  
+<title>列举对象仓库的所有索引的名称</title>  
+<script type="text/javascript">
+window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange|| window.webkitIDBKeyRange || window.msIDBKeyRange;
+window.IDBCursor = window.IDBCursor || window.webkitIDBCursor || window.msIDBCursor;	
+const dbName = 'indexedDBTest'; //数据库名
+const dbVersion =20180410; //版本号
+let idb,datatable; 
+function init(){
+    let dbConnect = indexedDB.open(dbName, dbVersion); //连接数据库
+    dbConnect.onsuccess = function(e){
+        idb = e.target.result; //获取数据库
+        //开启事务
+        let tx = idb.transaction(['Users2'],"readonly"); 
+        let store = tx.objectStore('Users2');
+        for(let indexName of store.indexNames)
+             document.getElementById('indexNames').innerHTML+='<li>'+indexName+'</li>';
+    };
+    dbConnect.onerror = function(){
+        alert('数据库连接失败');
+    };	 
+
+}
+</script>  
+</head>  
+<body onload="init();">  
+<h1>列举对象仓库的所有索引的名称</h1>  
+Users2对象仓库中的索引:
+<ul id="indexNames">
+</ul>
+</body>  
+</html>
+
+
+
+
+

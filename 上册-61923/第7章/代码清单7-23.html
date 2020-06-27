@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>   
+<head>   
+<meta charset="UTF-8">  
+<title>删除对象仓库</title>  
+<script type="text/javascript">
+window.indexedDB = window.indexedDB || window.webkitIndexedDB || 
+window.mozIndexedDB || window.msIndexedDB;
+window.IDBTransaction = window.IDBTransaction || 
+window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange|| window.webkitIDBKeyRange || 
+window.msIDBKeyRange;
+window.IDBCursor = window.IDBCursor || window.webkitIDBCursor ||
+window.msIDBCursor;	
+const dbName = 'indexedDBTest'; //数据库名
+const dbVersion = 20180410; //版本号
+function init(){
+    let datatable = document.getElementById("datatable"); 
+    let dbConnect = indexedDB.open(dbName, dbVersion); //连接数据库
+
+    dbConnect.onupgradeneeded = function(e){
+        let idb = e.target.result; //获取数据库
+        idb.deleteObjectStore('Users');
+        for(let objectStoreName of idb.objectStoreNames)
+             document.getElementById('objectStoreNames').innerHTML+='<li>'+objectStoreName+'</li>';
+    };
+    dbConnect.onerror = function(){
+        alert('数据库连接失败');
+    };	 
+}
+</script>  
+</head>  
+<body onload="init();">  
+<h1>删除对象仓库</h1>  
+indexedDBTest数据库中的对象仓库:
+<ul id="objectStoreNames">
+</ul>
+</body>  
+</html>
+
+
+

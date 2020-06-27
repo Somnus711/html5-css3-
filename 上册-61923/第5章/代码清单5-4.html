@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>使用ECMAScript 2015中的类的定义及使用</title>
+</head>
+<body>
+</body>
+<script>
+/*创建Cat类*/
+class Cat {
+  constructor(name) {
+    this.name = name;
+  }
+  set name(name) {
+    this._name = name;
+  }
+  get name() {
+    return this._name;
+  }
+  walk() {
+    console.log(this._name + '正在走路');
+  }
+}
+ 
+/*创建Cat对象*/ 
+var cat1 = new Cat('小猫');
+var cat2 = new Cat('大猫');
+cat1.walk(); // 小猫正在走路
+cat2.walk(); //大猫正在走路
+</script>
+</html>

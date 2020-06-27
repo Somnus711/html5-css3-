@@ -1,0 +1,13 @@
+﻿<!DOCTYPE html>
+<head>
+<meta charset="utf-8 ">
+<title>让事件监听器只监听一次</title>
+</head>
+<input id="button" type="button" value="点击我"></input>
+<script>
+document.getElementById("button").addEventListener("click",function(){
+    alert("按钮被点击!");
+    },{
+   once: true
+});
+</script>

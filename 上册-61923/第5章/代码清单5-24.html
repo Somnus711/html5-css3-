@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>读取JavaScript模块</title>
+  <script type="module">
+    import {user} from "/sample.js";
+    import {sayMessage} from "/sample.js";
+    sayMessage(user);
+  </script>
+  <!--<script type="module">
+    import {user,
+           sayMessage} from "/sample.js";
+    sayMessage(user);
+  </script>
+  <script type="module">
+    import {user,
+           sayMessage} from "/sample.js";
+    sayMessage(user);
+  </script>
+  <script type="module">
+  import {user as sample_user,
+           sayMessage as sample_sayMessage} from "/sample.js";
+    sample_sayMessage(sample_user);
+  </script>
+  <script type="module">
+    import * as All from "/sample.js";//对象名可任意，此处为All
+    All.sayMessage(All.user);
+  </script>
+  <script type="module">
+    import All from "/sample.js";//对象名可任意，此处为All
+    All.sayMessage(All.user);
+  </script>-->
+</head>
+<body>
+</body>
+</html>

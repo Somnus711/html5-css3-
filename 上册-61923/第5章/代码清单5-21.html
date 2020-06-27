@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>使用解构赋值方法修改变量值</title>
+</head>
+<body>
+</body>
+<script>
+let [apple,orange, pear] = ['苹果', '桔子', '梨'];
+
+console.log(apple);       //浏览器控制台中输出"苹果"
+console.log(orange);     //浏览器控制台中输出"桔子"
+console.log(pear);      //浏览器控制台中输出"梨"
+
+[apple,orange, pear] = ['大苹果', '大桔子', '大梨'];
+
+console.log(apple);       //浏览器控制台中输出"大苹果"
+console.log(orange);     //浏览器控制台中输出"大桔子"
+console.log(pear);      //浏览器控制台中输出"大梨"
+</script>
+</html>

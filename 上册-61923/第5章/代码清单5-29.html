@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>链式调用Promise对象的then方法</title>
+</head>
+<script language=javascript>
+function read()
+{
+    const fileName="user.json";
+    var promise=new Promise((resolve, reject)=>{ 
+        let objXmlHttp=new XMLHttpRequest();       
+        objXmlHttp.open("GET",fileName, true); 
+        objXmlHttp.onreadystatechange = ()=>{ 
+            if (objXmlHttp.readyState == 4) { 
+                if (objXmlHttp.status == 200) {
+                    resolve(objXmlHttp.responseText);
+                }
+                else
+                    reject();
+            }
+        }
+        objXmlHttp.send();
+    });
+    promise.then((response)=>JSON.parse(response),
+    ()=>alert("读取失败")).then((obj)=>{
+        document.getElementById("number").value=obj.number;
+        document.getElementById("name").value=obj.name;
+        document.getElementById("age").value=obj.age;
+    });
+}
+</script>
+<form id="form1">
+    <input type="button" value="读取用户资料" onclick="read()"/><br/>
+    学号:<input type="text" id="number" /><br/>
+    姓名:<input type="text" id="name" /><br/>
+    年龄:<input type="number" id="age" />
+</form>  
+</body> 
+</html>
+

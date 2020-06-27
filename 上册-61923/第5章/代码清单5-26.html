@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>读取三个文件</title>
+</head>
+<script language=javascript>
+function getData(fileName){ 
+    let objXmlHttp=new XMLHttpRequest();           
+    objXmlHttp.open("GET",fileName, true); 
+    objXmlHttp.onreadystatechange = ()=>{ 
+        if (objXmlHttp.readyState == 4) { 
+            if (objXmlHttp.status == 200){ 
+                allData+=objXmlHttp.responseText+"<br/>";
+                count+=1;
+                if(count==3){
+                    let result=document.getElementById("result");
+                    result.innerHTML=allData;
+                }
+            }
+            else{
+                if(errFlag==false)
+                    alert("读取文件失败");
+                errFlag=true;
+            }
+        }
+    }
+    objXmlHttp.send();
+}
+function read()
+{    
+    errFlag=false;
+    allData="";
+    count=0;
+    getData("1.txt");
+    getData("nonexist.txt"); 
+    getData("3.txt");  
+}
+</script>
+<input type="button" value="读取文件" onclick="read()"/>
+<div name="result" id="result" style="white-space:pre">
+      <!-- 这里用来显示读取结果 -->
+</div>  
+</body> 
+</html>

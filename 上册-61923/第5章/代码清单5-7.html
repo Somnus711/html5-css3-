@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>调用父类方法</title>
+</head>
+<body>
+</body>
+<script>
+/*创建Animal类*/
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  set name(name) {
+    this._name = name;
+  }
+  get name() {
+    return this._name;
+  }
+  walk() {
+    console.log(this.name + '正在走路');
+  }
+}
+/*创建继承Animal类的Cat类*/
+class Cat extends Animal {
+  constructor(name, color) {
+    super(name); //调用Animal类的构造器
+    this.color = color;
+  }
+  get color() {
+    return this._color;
+  }
+  set color(color) {
+    this._color = color;
+  }
+  mew() {
+    console.log(this.color + '色的' + this.name + '正在叫');
+  }
+  walk() {
+    super.walk(); // 调用Animal类的walk方法
+    console.log(',静悄悄地。');
+  }
+}
+ 
+var cat1 = new Cat('小猫','红');
+console.log(cat1.name); //浏览器控制台中输出“小猫”
+cat1.walk();//浏览器控制台中输出“小猫正在走路,静悄悄地。”
+cat1.mew();//浏览器控制台中输出“红色的小猫正在叫”
+var cat2 = new Cat('大猫','黑');
+console.log(cat2.name); // 浏览器控制台中输出“大猫”
+cat2.walk();//浏览器控制台中输出“大猫正在走路,静悄悄地。”
+cat2.mew();//浏览器控制台中输出“黑色的大猫正在叫”
+</script>
+</html>

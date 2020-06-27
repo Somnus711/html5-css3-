@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>对对象使用解构赋值方法给变量赋值</title>
+</head>
+<body>
+</body>
+<script>
+let {apple,orange, pear} = {apple: '苹果',orange: '桔子',pear: '梨'};
+
+console.log(apple);     // "苹果"
+console.log(orange);     // "桔子"
+console.log(pear);  // "梨"
+
+{apple,orange, pear} = {apple: '大苹果',orange: '大桔子',pear: '大梨'};
+//({apple,orange, pear} = {apple: '大苹果',orange: '大桔子',pear: '大梨'});
+console.log(apple);     // "大苹果"
+console.log(orange);     // "大桔子"
+console.log(pear);  // "大梨"
+</script>
+</html>

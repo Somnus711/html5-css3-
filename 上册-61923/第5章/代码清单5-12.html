@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>使用箭头函数创建对象</title>
+</head>
+<body>
+</body>
+<script>
+//浏览器控制台中输出{name: "陆凌牛"}对象
+var getUserName = () => ({name:'陆凌牛'});
+console.log(getUserName());
+
+var getUserName2 = () => {name:'陆凌牛'};
+//浏览器控制台中输出undefined
+console.log(getUserName2());
+</script>
+</html>

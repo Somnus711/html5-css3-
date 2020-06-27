@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>   
+<head>   
+<meta charset="UTF-8">  
+<title>删除索引</title>  
+<script type="text/javascript">
+window.indexedDB = window.indexedDB || window.webkitIndexedDB || 
+window.mozIndexedDB || window.msIndexedDB;
+window.IDBTransaction = window.IDBTransaction || 
+window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange|| window.webkitIDBKeyRange || 
+window.msIDBKeyRange;
+window.IDBCursor = window.IDBCursor || window.webkitIDBCursor || 
+window.msIDBCursor;	
+const dbName = 'indexedDBTest'; //数据库名
+const dbVersion =20180411; //版本号
+function init(){
+    let dbConnect = indexedDB.open(dbName, dbVersion); //连接数据库
+    dbConnect.onsuccess = function(e){
+        let idb = e.target.result; //获取数据库
+    };
+    dbConnect.onerror = function(){
+        alert('数据库连接失败');
+    };	 
+    dbConnect.onupgradeneeded = function(e){
+        let idb = e.target.result; //获取数据库
+        let tx = e.target.transaction;
+        //开启事务
+        let store = tx.objectStore('Users2');
+        store.deleteIndex('userNameIndex');
+        for(let indexName of store.indexNames)
+             document.getElementById('indexNames').innerHTML+=
+             '<li>'+indexName+'</li>';
+    };
+}
+</script>  
+</head>  
+<body onload="init();">  
+<h1>删除索引</h1>  
+Users2对象仓库中的索引:
+<ul id="indexNames">
+</ul>
+</body>  
+</html>
